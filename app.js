@@ -1,13 +1,21 @@
-function sortear(){
-   let quantidade = parseInt (document.getElementById("quantidade").value) ;
-   let de = parseInt (document.getElementById("de").value);
-   let ate = parseInt (document.getElementById("ate").value) ;
+function sortear() {
+   let quantidade = parseInt(document.getElementById("quantidade").value);
+   let de = parseInt(document.getElementById("de").value);
+   let ate = parseInt(document.getElementById("ate").value);
+
+   if (quantidade > (ate - de + 1)) {
+      alert(`Do ${de} até o  número ${ate} não contem a quantidade necessario para sortear!`);
+      return alterarStatusBotao();
+
+   }
+
+
 
    let sorteados = [];
    let numero;
-   
 
-   for (let i = 0; i < quantidade; i++){
+
+   for (let i = 0; i < quantidade; i++) {
       numero = obterNumeroAleatorio(de, ate);
 
       while (sorteados.includes(numero)) {
@@ -16,16 +24,17 @@ function sortear(){
 
       sorteados.push(numero);
    }
-   
+
+
    let resultado = document.getElementById('resultado');
-   resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados: ${sorteados}</label>` 
+   resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados: ${sorteados}</label>`
    alterarStatusBotao();
 
 }
 
 
-function obterNumeroAleatorio(min, max){
-   return Math.floor( Math.random() * (max - min)) + min;
+function obterNumeroAleatorio(min, max) {
+   return Math.floor(Math.random() * (max - min)) + min;
 }
 
 function alterarStatusBotao() {
@@ -40,11 +49,12 @@ function alterarStatusBotao() {
    }
 }
 
-function reiniciar(){
+function reiniciar() {
    document.getElementById("quantidade").value = '';
    document.getElementById("de").value = '';
    document.getElementById("ate").value = '';
    document.getElementById("resultado").innerHTML = '<label class="texto__paragrafo">Números sorteados:  nenhum até agora</label>';
    alterarStatusBotao();
-   
+
 }
+
